@@ -33,3 +33,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# firebase private
+next-auth-tutorial-bfcf9-firebase-adminsdk-p3tv3-0d30ba6838.json
+
+# vscode
+.vscode/*
