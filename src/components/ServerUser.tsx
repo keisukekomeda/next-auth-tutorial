@@ -4,5 +4,11 @@ import { getServerSession } from "next-auth";
 export default async function ServerUser() {
   const session = await getServerSession(authOptions);
   const user = session?.user;
-  return <p>{JSON.stringify(user)}</p>;
+  return (
+    <p>
+      server:
+      <br />
+      {JSON.stringify(user)}
+    </p>
+  );
 }

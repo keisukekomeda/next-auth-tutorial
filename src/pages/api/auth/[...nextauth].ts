@@ -14,7 +14,11 @@ export const authOptions: NextAuthOptions = {
           try {
             const decoded = await auth.verifyIdToken(credentials.idToken);
 
-            return { ...decoded, id: decoded.uid };
+            return {
+              ...decoded,
+              id: decoded.uid,
+              idToken: credentials.idToken,
+            };
           } catch (e) {
             console.error(e);
           }
@@ -28,15 +32,18 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     jwt: async ({ token, user }) => {
+      console.log("callback jwt", { token, user });
       return { ...token, ...user };
     },
     session: async ({ session, token }) => {
+      console.log("callback session", { session, token });
       return {
         ...session,
         user: {
           ...session.user,
-          emailVerified: token.emailVerified,
+          emailVerified: token.email_verified,
           uid: token.uid,
+          // idToken: token.idToken,
         },
       };
     },
